@@ -18,11 +18,11 @@ class UserViewController: UIViewController {
             if(listOrMap){
                 userListVC?.view.frame = container.bounds
                 container.addSubview(userListVC?.view ?? UIView())
-                navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "listMenu"), style: .plain, target: self, action: #selector(navBar))
+                navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "mapMenu"), style: .plain, target: self, action: #selector(navBar))
             } else {
                 mapVC?.view.frame = container.bounds
                 container.addSubview(mapVC?.view ?? UIView())
-                navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "mapMenu"), style: .plain, target: self, action: #selector(mapBar))
+                navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "listMenu"), style: .plain, target: self, action: #selector(mapBar))
             }
         }
     }
@@ -51,11 +51,11 @@ class UserViewController: UIViewController {
     }
 
     @objc func navBar(){
-        listOrMap = false
+        listOrMap = !listOrMap
     }
     
     @objc func mapBar(){
-        listOrMap = true
+        listOrMap = !listOrMap
     }
 
 }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct User {
    
@@ -15,11 +16,11 @@ struct User {
     var avatarLink = ""
     var fullName = ""
     
-    init(input: Dictionary<String, String>){
-        email = input["email"] ?? ""
-        firstName = input["first_name"] ?? ""
-        lastName = input["last_name"] ?? ""
-        avatarLink = input["avatar"] ?? ""
+    init(input: Dictionary<String, Any>){
+        email = input["email"] as? String ?? ""
+        firstName = input["first_name"] as? String ?? ""
+        lastName = input["last_name"] as? String ?? ""
+        avatarLink = input["avatar"] as? String ?? ""
         fullName = firstName + lastName
     }
     
