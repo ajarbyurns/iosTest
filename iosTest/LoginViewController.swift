@@ -9,22 +9,38 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var name: UITextField!
+    @IBOutlet weak var palindrome: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        navigationController?.navigationBar.isHidden = true
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.topItem?.backButtonTitle = ""
     }
-    */
-
+    
+    @IBAction func onCheck(_ sender: Any) {
+        let text = palindrome.text ?? ""
+        let reverse = String(text.reversed())
+        var message = "not palindrome"
+        if(text == reverse){
+            message = "isPalindrome"
+        }
+        let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        self.present(alert, animated: true, completion: nil)
+    }
+        
+    
+    @IBAction func onNext(_ sender: Any) {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "Home") {
+            navigationController?.pushViewController(vc, animated: true)
+        }
+            
+    }
+    
 }
