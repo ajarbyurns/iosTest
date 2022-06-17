@@ -7,6 +7,6 @@ target 'iosTest' do
 
   # Pods for iosTest
   pod 'IQKeyboardManagerSwift'
-  pod 'SDWebImage', '~> 5.0'
+  pod 'SDWebImage'
 
 end

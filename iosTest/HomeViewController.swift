@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class HomeViewController: UIViewController {
 
@@ -23,21 +24,28 @@ class HomeViewController: UIViewController {
     
     var showProfile = false {
         didSet{
-            filledProfileView.isHidden = !filledProfileView.isHidden
-            emptyProfileLabel.isHidden = !emptyProfileLabel.isHidden
+            if(showProfile){
+                filledProfileView.isHidden = false
+                emptyProfileLabel.isHidden = true
+            } else {
+                filledProfileView.isHidden = true
+                emptyProfileLabel.isHidden = false
+            }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = false
+        profileImage.layer.cornerRadius = profileImage.frame.height/2
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        nameTitleLabel.text = UserDefaults.standard.string(forKey: "name")
         if let user = user {
             profileEmail.text = user.email
             profileNameLabel.text = user.fullName
-            profileImage.loadFromURL(link: user.avatarLink)
+            profileImage.sd_setImage(with: URL(string: user.avatarLink), placeholderImage: UIImage(named: "empty"), options: .highPriority, context: nil)
             showProfile = true
         }
     }
@@ -54,20 +62,4 @@ class HomeViewController: UIViewController {
         }
     }
     
-}
-
-extension UIImageView {
-    
-    func loadFromURL(link: String){
-        if let url = URL(string: link){
-            DispatchQueue.main.async {
-                [weak self] in
-                if let data = try? Data(contentsOf: url) {
-                    if let image = UIImage(data: data) {
-                        self?.image = image
-                    }
-                }
-            }
-        }
-    }
 }

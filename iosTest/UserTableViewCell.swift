@@ -18,7 +18,6 @@ class UserTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         displayPic.layer.cornerRadius = displayPic.frame.height/2
-        displayPic.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

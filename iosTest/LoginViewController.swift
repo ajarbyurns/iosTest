@@ -32,12 +32,13 @@ class LoginViewController: UIViewController {
         }
         let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
-        self.present(alert, animated: true, completion: nil)
+        self.navigationController?.present(alert, animated: true, completion: nil)
     }
         
     
     @IBAction func onNext(_ sender: Any) {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "Home") {
+            UserDefaults.standard.set(name.text ?? "", forKey: "name")
             navigationController?.pushViewController(vc, animated: true)
         }
             

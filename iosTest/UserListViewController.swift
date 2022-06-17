@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class UserListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -22,10 +23,8 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
                 loadingBar.isHidden = true
                 emptyStateLabel.isHidden = false
             }
-            tableView.refreshControl?.endRefreshing()
         }
     }
-    var images: [UIImage] = []
     var currentPage = 1
     
     override func viewDidLoad() {
@@ -37,6 +36,9 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.refreshControl = UIRefreshControl()
         tableView.refreshControl?.addTarget(self, action: #selector(refreshTable), for: .valueChanged)
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         loadTable()
     }
     
@@ -48,26 +50,38 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let user = users[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "User") as? UserTableViewCell
-        cell?.displayPic.loadFromURL(link: user.avatarLink)
+        cell?.displayPic.sd_setImage(with: URL(string: user.avatarLink), placeholderImage: UIImage(named: "empty"), options: .retryFailed, context: nil)
         cell?.emailLabel.text = user.email
         cell?.nameLabel.text = user.fullName
+        
+        if indexPath.row == self.users.count - 1 {
+            self.loadTable()
+        }
         return cell ?? UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let tempUser = users[indexPath.row]
+        if let controllers = navigationController?.viewControllers {
+            if let vc = controllers[controllers.count - 2] as? HomeViewController {
+                vc.user = tempUser
+                navigationController?.popToViewController(vc, animated: true)
+            }
+        }
     }
     
     @objc func refreshTable(){
         currentPage = 1
-        users = []
         loadTable()
     }
 
     func loadTable(){
-        
-        print(currentPage)
-        
+                
         if(currentPage == 0){
+            tableView.refreshControl?.endRefreshing()
             return
         }
-        
+                
         let link = "https://reqres.in/api/users?page=\(currentPage)&per_page=10"
                             
         if let url = URL(string: link) {
@@ -75,6 +89,9 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
             URLSession.shared.dataTask(with: request){data, response, error in
                 
                 guard error == nil else {
+                    DispatchQueue.main.async{
+                        self.tableView.refreshControl?.endRefreshing()
+                    }
                     return
                 }
                 
@@ -85,12 +102,13 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
                         let output = json["data"] as? [Dictionary<String, Any>] ?? []
                         var tempUsers : [User] = []
                         for item in output {
-                            let userItem = User(input: item)
-                            tempUsers.append(userItem)
+                            tempUsers.append(User(input: item))
                         }
                         DispatchQueue.main.async{
-                            if(!tempUsers.isEmpty){
+                            if(self.currentPage == 1){
                                 self.users = tempUsers
+                            } else {
+                                self.users.append(contentsOf: tempUsers)
                             }
                             let totalPages = json["total_pages"] as? Int ?? 0
                             if(self.currentPage < totalPages){
@@ -98,9 +116,14 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
                             } else {
                                 self.currentPage = 0
                             }
+                            self.tableView.refreshControl?.endRefreshing()
                         }
                     } catch {
                         print("ERROR \(error.localizedDescription)")
+                        DispatchQueue.main.async{
+                            self.tableView.refreshControl?.endRefreshing()
+                            self.users = []
+                        }
                     }
                 }
                 

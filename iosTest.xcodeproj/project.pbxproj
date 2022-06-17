@@ -94,11 +94,11 @@
 				7A4B1731285C7F4300589A23 /* UserViewController.swift */,
 				7A4B1733285C7F5200589A23 /* UserListViewController.swift */,
 				7A4B1735285C7F7C00589A23 /* MapViewController.swift */,
+				7A4B1737285C899800589A23 /* UserTableViewCell.swift */,
 				7A4B171B285C3E5700589A23 /* Main.storyboard */,
 				7A4B171E285C3E5800589A23 /* Assets.xcassets */,
 				7A4B1720285C3E5800589A23 /* LaunchScreen.storyboard */,
 				7A4B1723285C3E5800589A23 /* Info.plist */,
-				7A4B1737285C899800589A23 /* UserTableViewCell.swift */,
 			);
 			path = iosTest;
 			sourceTree = "<group>";
