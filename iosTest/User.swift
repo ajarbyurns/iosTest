@@ -21,7 +21,7 @@ struct User {
         firstName = input["first_name"] as? String ?? ""
         lastName = input["last_name"] as? String ?? ""
         avatarLink = input["avatar"] as? String ?? ""
-        fullName = firstName + lastName
+        fullName = firstName + " " + lastName
     }
     
 }

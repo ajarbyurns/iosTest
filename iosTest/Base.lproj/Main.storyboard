@@ -571,11 +571,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U4d-Sf-k4p" userLabel="Icon">
-                                <rect key="frame" x="0.0" y="332.5" width="414" height="231.5"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mzp-d3-9yf" userLabel="background">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="lZv-Zz-ARc" appends="YES" id="sAf-zS-pFF"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U4d-Sf-k4p" userLabel="Content">
+                                <rect key="frame" x="0.0" y="610.5" width="414" height="251.5"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fcb-OD-9eI">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fcb-OD-9eI" userLabel="Icon">
+                                        <rect key="frame" x="0.0" y="20" width="414" height="100"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty" translatesAutoresizingMaskIntoConstraints="NO" id="v2b-eD-CQ3">
                                                 <rect key="frame" x="157" y="0.0" width="100" height="100"/>
@@ -593,13 +600,13 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Doe" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m0l-dA-j6X">
-                                        <rect key="frame" x="20" y="120" width="374" height="26.5"/>
+                                        <rect key="frame" x="20" y="140" width="374" height="26.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n3E-o2-zRH">
-                                        <rect key="frame" x="30" y="166.5" width="354" height="45"/>
+                                        <rect key="frame" x="20" y="186.5" width="364" height="45"/>
                                         <color key="backgroundColor" red="0.16862745100000001" green="0.38823529410000002" blue="0.4823529412" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="jnp-bM-0s8"/>
@@ -620,7 +627,7 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="n3E-o2-zRH" firstAttribute="leading" secondItem="U4d-Sf-k4p" secondAttribute="leading" constant="30" id="1p2-eI-MYt"/>
+                                    <constraint firstItem="n3E-o2-zRH" firstAttribute="left" secondItem="U4d-Sf-k4p" secondAttribute="left" constant="20" id="1p2-eI-MYt"/>
                                     <constraint firstItem="n3E-o2-zRH" firstAttribute="top" secondItem="m0l-dA-j6X" secondAttribute="bottom" constant="20" id="GMA-nz-ezd"/>
                                     <constraint firstItem="m0l-dA-j6X" firstAttribute="leading" secondItem="U4d-Sf-k4p" secondAttribute="leading" constant="20" id="KaP-75-fz8"/>
                                     <constraint firstAttribute="trailing" secondItem="fcb-OD-9eI" secondAttribute="trailing" id="Q8X-0g-nfZ"/>
@@ -628,16 +635,24 @@
                                     <constraint firstItem="m0l-dA-j6X" firstAttribute="top" secondItem="fcb-OD-9eI" secondAttribute="bottom" constant="20" id="dg6-xS-lfj"/>
                                     <constraint firstAttribute="trailing" secondItem="m0l-dA-j6X" secondAttribute="trailing" constant="20" id="dtl-dh-CTI"/>
                                     <constraint firstAttribute="bottom" secondItem="n3E-o2-zRH" secondAttribute="bottom" constant="20" id="f7d-Zu-mD9"/>
-                                    <constraint firstItem="fcb-OD-9eI" firstAttribute="top" secondItem="U4d-Sf-k4p" secondAttribute="top" id="vBJ-2b-Jvj"/>
+                                    <constraint firstItem="fcb-OD-9eI" firstAttribute="top" secondItem="U4d-Sf-k4p" secondAttribute="top" constant="20" id="vBJ-2b-Jvj"/>
                                     <constraint firstItem="fcb-OD-9eI" firstAttribute="leading" secondItem="U4d-Sf-k4p" secondAttribute="leading" id="wVj-QY-FTN"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Zt9-ow-IGe"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Mzp-d3-9yf" firstAttribute="top" secondItem="Zt9-ow-IGe" secondAttribute="top" id="Ab1-Cf-XTg"/>
                             <constraint firstItem="Zt9-ow-IGe" firstAttribute="trailing" secondItem="U4d-Sf-k4p" secondAttribute="trailing" id="NHP-wK-3uS"/>
-                            <constraint firstItem="U4d-Sf-k4p" firstAttribute="centerY" secondItem="QjT-7G-tbT" secondAttribute="centerY" id="hAU-4I-yWD"/>
+                            <constraint firstItem="Zt9-ow-IGe" firstAttribute="trailing" secondItem="Mzp-d3-9yf" secondAttribute="trailing" id="adZ-qy-yH6"/>
+                            <constraint firstItem="Zt9-ow-IGe" firstAttribute="bottom" secondItem="U4d-Sf-k4p" secondAttribute="bottom" id="e8n-HE-z1W"/>
+                            <constraint firstItem="Zt9-ow-IGe" firstAttribute="bottom" secondItem="Mzp-d3-9yf" secondAttribute="bottom" id="zHb-Wo-54H"/>
+                            <constraint firstItem="Mzp-d3-9yf" firstAttribute="leading" secondItem="Zt9-ow-IGe" secondAttribute="leading" id="zKJ-DE-cSp"/>
                             <constraint firstItem="U4d-Sf-k4p" firstAttribute="leading" secondItem="Zt9-ow-IGe" secondAttribute="leading" id="zYm-uG-Kkz"/>
                         </constraints>
                     </view>
@@ -647,6 +662,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AG9-KB-TOj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="lZv-Zz-ARc" userLabel="Tap Background">
+                    <connections>
+                        <action selector="clickBackground:" destination="Xig-np-Bfs" id="4Tw-Wb-h0f"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1725" y="-725"/>
         </scene>

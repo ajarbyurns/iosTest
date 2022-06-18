@@ -7,7 +7,6 @@
 
 import UIKit
 import MapKit
-import FittedSheets
 
 class MapViewController: UIViewController, MKMapViewDelegate {
 
@@ -21,8 +20,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     let maxLatitude : Double = 15
     let minLatitude : Double = -7
     
-    weak var controller : BottomSheetViewController? = nil
-    var sheetController : SheetViewController? = nil
+    var controller : BottomSheetViewController? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,14 +28,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         // Do any additional setup after loading the view.
         mapView.delegate = self
         controller = storyboard?.instantiateViewController(withIdentifier: "Bottom") as? BottomSheetViewController
-        controller?.parentVC = self
-        let options = SheetOptions(
-            useInlineMode: true
-        )
-        sheetController = SheetViewController(controller: controller ?? UIViewController(), sizes: [.percent(0.4), .fullscreen], options: options)
-        sheetController?.allowGestureThroughOverlay = true
-        sheetController?.dismissOnOverlayTap = true
-        sheetController?.dismissOnPull = true
+        controller?.modalPresentationStyle = .overCurrentContext
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,9 +46,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             mapView.setCenter(location.coordinate, animated: true)
             let selectedUser = users[location.id]
             controller?.user = selectedUser
-            if let sc = sheetController {
-                sc.animateIn(to: self.view, in: self)
-                //navigationController?.present(sc, animated: true, completion: nil)
+            if let con = controller {
+                navigationController?.present(con, animated: true, completion: nil)
             }
         }
         mapView.deselectAnnotation(view.annotation, animated: false)
@@ -79,21 +69,5 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             annotationView.image = UIImage(named: "pinpoint")
         }
         return annotationView
-    }
-}
-
-extension MKMapView {
-  func centerToLocation(_ location: Location) {
-      let span = MKCoordinateSpan.init(latitudeDelta: 0.01, longitudeDelta: 0.01)
-      let coordinateRegion = MKCoordinateRegion(center: location.coordinate, span: span)
-      setRegion(coordinateRegion, animated: true)
-      //setCenter(location.coordinate, animated: true)
-  }
-    
-    func centerToLocation(_ coordinate: CLLocationCoordinate2D) {
-        let span = MKCoordinateSpan.init(latitudeDelta: 0.01, longitudeDelta: 0.01)
-        let coordinateRegion = MKCoordinateRegion(center: coordinate, span: span)
-        setRegion(coordinateRegion, animated: true)
-        //setCenter(coordinate, animated: true)
     }
 }
