@@ -21,6 +21,8 @@ class UserViewController: UIViewController {
                 navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "mapMenu"), style: .plain, target: self, action: #selector(navBar))
             } else {
                 mapVC?.view.frame = container.bounds
+                //Select the first user, cause I don't display list of users using MapView
+                mapVC?.users = userListVC?.users ?? []
                 container.addSubview(mapVC?.view ?? UIView())
                 navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "listMenu"), style: .plain, target: self, action: #selector(mapBar))
             }

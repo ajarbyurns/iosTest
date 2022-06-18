@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0521D6DB143597BF9923815C /* Pods_iosTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7F7CF35D07BBF2C528FF0C2 /* Pods_iosTest.framework */; };
+		7A27DEF2285D7A77008FBDCB /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A27DEF1285D7A77008FBDCB /* Location.swift */; };
+		7A27DEF4285D9671008FBDCB /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A27DEF3285D9671008FBDCB /* BottomSheetViewController.swift */; };
 		7A4B1716285C3E5700589A23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A4B1715285C3E5700589A23 /* AppDelegate.swift */; };
 		7A4B1718285C3E5700589A23 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A4B1717285C3E5700589A23 /* SceneDelegate.swift */; };
 		7A4B171D285C3E5700589A23 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A4B171B285C3E5700589A23 /* Main.storyboard */; };
@@ -25,6 +27,8 @@
 
 /* Begin PBXFileReference section */
 		40D2E1D4C6756FAAB768BC24 /* Pods-iosTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosTest.release.xcconfig"; path = "Target Support Files/Pods-iosTest/Pods-iosTest.release.xcconfig"; sourceTree = "<group>"; };
+		7A27DEF1285D7A77008FBDCB /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		7A27DEF3285D9671008FBDCB /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
 		7A4B1712285C3E5700589A23 /* iosTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A4B1715285C3E5700589A23 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7A4B1717285C3E5700589A23 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,10 +95,12 @@
 				7A4B172B285C63D500589A23 /* HomeViewController.swift */,
 				7A4B172D285C759D00589A23 /* WebviewViewController.swift */,
 				7A4B172F285C77CF00589A23 /* User.swift */,
+				7A27DEF1285D7A77008FBDCB /* Location.swift */,
 				7A4B1731285C7F4300589A23 /* UserViewController.swift */,
 				7A4B1733285C7F5200589A23 /* UserListViewController.swift */,
 				7A4B1735285C7F7C00589A23 /* MapViewController.swift */,
 				7A4B1737285C899800589A23 /* UserTableViewCell.swift */,
+				7A27DEF3285D9671008FBDCB /* BottomSheetViewController.swift */,
 				7A4B171B285C3E5700589A23 /* Main.storyboard */,
 				7A4B171E285C3E5800589A23 /* Assets.xcassets */,
 				7A4B1720285C3E5800589A23 /* LaunchScreen.storyboard */,
@@ -228,11 +234,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A4B1732285C7F4300589A23 /* UserViewController.swift in Sources */,
+				7A27DEF2285D7A77008FBDCB /* Location.swift in Sources */,
 				7A4B1734285C7F5200589A23 /* UserListViewController.swift in Sources */,
 				7A4B172A285C402100589A23 /* LoginViewController.swift in Sources */,
 				7A4B172E285C759D00589A23 /* WebviewViewController.swift in Sources */,
 				7A4B1738285C899800589A23 /* UserTableViewCell.swift in Sources */,
 				7A4B1736285C7F7C00589A23 /* MapViewController.swift in Sources */,
+				7A27DEF4285D9671008FBDCB /* BottomSheetViewController.swift in Sources */,
 				7A4B1730285C77CF00589A23 /* User.swift in Sources */,
 				7A4B1716285C3E5700589A23 /* AppDelegate.swift in Sources */,
 				7A4B1718285C3E5700589A23 /* SceneDelegate.swift in Sources */,

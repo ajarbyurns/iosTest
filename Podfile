@@ -8,5 +8,6 @@ target 'iosTest' do
   # Pods for iosTest
   pod 'IQKeyboardManagerSwift'
   pod 'SDWebImage'
+  pod 'FittedSheets'
 
 end
